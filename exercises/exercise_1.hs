@@ -1,11 +1,13 @@
-import Control.Exception (assert)
+import Test.HUnit
 
 -- Functions
 -- 1.
-largestNum x y = if x >= y then x else y
+max2 :: Int -> Int -> Int
+max2 x y = if x >= y then x else y
 
 -- 2.
-largestThreeNum x y z = largestNum (largestNum x y) z
+max3 :: Int -> Int -> Int -> Int
+max3 x y z = max2 (max2 x y) z
 
 -- 3.
 f :: (Int -> String) -> (String -> Bool) -> (Int -> Bool)
@@ -19,6 +21,12 @@ g f1 f2 int = f2 (f1 int)
 twice :: (Int -> Int) -> Int -> Int
 twice f1 int = f1 (f1 int)
 
+force m1 m2 d =
+  let g = 6.67 * (10 ^^ (-11))
+      top = m1 * m2
+      bottom = d * d
+   in g * (top / bottom)
+
 -- HELPERS --
 stringToBool s = length s == 5
 
@@ -26,13 +34,19 @@ intToBool i = i == 10
 
 timesByTwo x = x * 2
 
--- main
-main = do
-  putStrLn (assert (largestNum 10 100 == 100) "(largestNum 10 100 == 100) Success!")
-  putStrLn ("1. largestNum(10 100): " ++ show (largestNum 10 100))
-  putStrLn ("2. largestThreeNum(10 100 1000): " ++ show (largestThreeNum 10 100 1000))
-  putStrLn ("3. Expected 'True': " ++ show (f show stringToBool 10000))
-  putStrLn ("3. Expected 'False': " ++ show (f show stringToBool 10))
-  putStrLn ("4. Expected 'True': " ++ g intToBool show 10)
-  putStrLn ("4. Expected 'False': " ++ g intToBool show (-1))
-  putStrLn ("5. Expected " ++ g intToBool show (-1))
+-- TESTS
+max2Happy = TestCase (assertEqual "max2 10 100 == 100" 100 (max2 10 100))
+
+max3Happy = TestCase (assertEqual "max3 10 100 1000" 1000 (max3 10 100 1000))
+
+fHappy = TestCase (assertEqual "f show stringToBool 10000" True (f show stringToBool 10000))
+
+gHappy = TestCase (assertEqual "g intToBool show 10" "True" (g intToBool show 10))
+
+twiceHappy = TestCase (assertEqual "twice timesByTwo 5" 20 (twice timesByTwo 5))
+
+forceHappy = TestCase (assertEqual "force 3.0 3.0 2.0" (1.50075 * (10 ^^ (-10))) (force 3.0 3.0 2.0))
+
+tests = TestList [max2Happy, max3Happy, fHappy, gHappy, twiceHappy, forceHappy]
+
+main = runTestTT tests
