@@ -31,7 +31,8 @@ forceLet m1 m2 d =
 
 forceWhere :: Fractional a => a -> a -> a -> a
 forceWhere m1 m2 d = g * ((m1 * m2) / (d * d))
-    where g = 6.67 * (10 ^^ (-11))
+  where
+    g = 6.67 * (10 ^^ (-11))
 
 -- HELPERS --
 stringToBool s = length s == 5
