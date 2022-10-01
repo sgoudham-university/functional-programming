@@ -1,6 +1,6 @@
 import Test.HUnit
 
--- FUNCTIONS
+-- FUNCTIONS --
 -- 1.
 max2 :: Int -> Int -> Int
 max2 x y = if x >= y then x else y
@@ -34,6 +34,26 @@ forceWhere m1 m2 d = g * ((m1 * m2) / (d * d))
   where
     g = 6.67 * (10 ^^ (-11))
 
+-- LIST COMPREHENSION --
+-- 1.
+divisibleByThree :: [Int]
+divisibleByThree = [x | x <- [1 .. 30], x `mod` 3 == 0]
+
+-- 2.
+triangles :: Int -> [Int]
+triangles n = [x | x <- [1 .. n], x <- [x * (x + 1) `div` 2]]
+
+-- 3.
+isPrime :: Int -> Bool
+isPrime x = [y | y <- [2 .. x - 1], x `mod` 1 == 0 && x `mod` y == 0] == []
+
+primes :: Int -> [Int]
+primes n = [x | x <- [2 .. n], isPrime x]
+
+-- 4.
+flatten :: [[a]] -> [a]
+flatten nested = [i | j <- nested, i <- j]
+
 -- HELPERS --
 stringToBool s = length s == 5
 
@@ -56,6 +76,27 @@ forceLetHappy = TestCase (assertEqual "forceLet 3.0 3.0 2.0" (1.50075 * (10 ^^ (
 
 forceWhereHappy = TestCase (assertEqual "forceWhere 3.0 3.0 2.0" (1.50075 * (10 ^^ (-10))) (forceWhere 3.0 3.0 2.0))
 
-tests = TestList [max2Happy, max3Happy, fHappy, gHappy, twiceHappy, forceLetHappy, forceWhereHappy]
+divisibleByThreeHappy = TestCase (assertEqual "divisibleByThree" [3, 6, 9, 12, 15, 18, 21, 24, 27, 30] divisibleByThree)
+
+trianglesHappy = TestCase (assertEqual "triangles" [1, 3, 6, 10] (triangles 4))
+
+primesHappy = TestCase (assertEqual "primes" [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31] (primes 31))
+
+nestedHappy = TestCase (assertEqual "nested" [1, 2, 3, 4, 5, 6] (flatten [[1, 2], [3, 4], [5, 6]]))
+
+tests =
+  TestList
+    [ max2Happy,
+      max3Happy,
+      fHappy,
+      gHappy,
+      twiceHappy,
+      forceLetHappy,
+      forceWhereHappy,
+      divisibleByThreeHappy,
+      trianglesHappy,
+      primesHappy,
+      nestedHappy
+    ]
 
 main = runTestTT tests
