@@ -48,7 +48,7 @@ isPrime :: Int -> Bool
 isPrime x = [y | y <- [2 .. x - 1], x `mod` 1 == 0 && x `mod` y == 0] == []
 
 primes :: Int -> [Int]
-primes n = [x | x <- [2 .. n], isPrime x]
+primes n = [x | x <- [2 .. n - 1], isPrime x]
 
 -- 4.
 flatten :: [[a]] -> [a]
@@ -84,6 +84,8 @@ primesHappy = TestCase (assertEqual "primes" [2, 3, 5, 7, 11, 13, 17, 19, 23, 29
 
 nestedHappy = TestCase (assertEqual "nested" [1, 2, 3, 4, 5, 6] (flatten [[1, 2], [3, 4], [5, 6]]))
 
+-- nestedSad = TestCase (assertFailure "nested" [] (flatten [[1, 2], [3, 4], [5, 6]]))
+
 tests =
   TestList
     [ max2Happy,
@@ -97,6 +99,7 @@ tests =
       trianglesHappy,
       primesHappy,
       nestedHappy
+      -- nestedSad
     ]
 
 main = runTestTT tests
