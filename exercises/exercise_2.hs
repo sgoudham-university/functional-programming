@@ -1,5 +1,6 @@
 import Test.HUnit
 
+-- BOOLEANS, COMPARISONS, TUPLES, AND MORE lISTS --
 -- 1.
 isAscending4 :: Int -> Int -> Int -> Int -> Bool
 isAscending4 x1 x2 x3 x4 = x4 > x3 && x3 > x2 && x2 > x1
@@ -38,7 +39,11 @@ mapPair2 func (a, b) = func (a, b)
 f :: (a, b) -> (a -> c) -> (b -> d) -> ((c, d) -> e) -> e
 f (a, b) f1 f2 f3 = f3 (f1 a, f2 b)
 
--- 10. TODO
+-- 10.
+-- TODO
+
+-- IO --
+-- TODO
 
 isAscending4Happy = TestCase (assertEqual "isAscending4" True (isAscending4 1 2 3 4))
 swapHappy = TestCase (assertEqual "swap" ("Cat", "Ppuccin") (swap ("Ppuccin", "Cat")))
