@@ -1,4 +1,4 @@
--- module Exercises.One.Spec (oneTests) where
+module Exercises.One.Spec (oneTests) where
 
 import Exercises.One.Functions
 import Exercises.One.ListComprehension

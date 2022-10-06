@@ -1,14 +1,14 @@
-import Exercises.One.Spec
-import Exercises.Two.Spec
-
+import Exercises.One.Spec (oneTests)
+import Exercises.Two.Spec (twoTests)
 import System.Exit
 import Test.HUnit
 
 main :: IO ()
 main = do
-  results <-
-    runTestTT $
-      test (oneTests ++ twoTests)
-  if errors results + failures results == 0
-    then putStrLn "Tests passed."
-    else die "Tests failed."
+  printOut oneTests
+  printOut twoTests
+
+printOut :: Test -> IO ()
+printOut input = do
+  results <- runTestTT input
+  if errors results + failures results == 0 then putStrLn "Tests Passed." else die "Tests Failed."

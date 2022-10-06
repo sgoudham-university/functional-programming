@@ -1,7 +1,7 @@
 module Exercises.Two.Spec (twoTests) where
 
-import Test.HUnit
 import Exercises.Two.Booleans
+import Test.HUnit
 
 isAscending4Happy :: Test
 isAscending4Happy = TestCase (assertEqual "isAscending4" True (isAscending4 1 2 3 4))
