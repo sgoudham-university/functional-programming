@@ -1,14 +1,8 @@
 import Exercises.One.Spec (oneTests)
 import Exercises.Two.Spec (twoTests)
-import System.Exit
 import Test.HUnit
 
-main :: IO ()
-main = do
-  printOut oneTests
-  printOut twoTests
+-- mapM_ discards the returned list, as opposed to mapM which returns the list
 
-printOut :: Test -> IO ()
-printOut input = do
-  results <- runTestTT input
-  if errors results + failures results == 0 then putStrLn "Tests Passed." else die "Tests Failed."
+main :: IO ()
+main = mapM_ runTestTT [oneTests, twoTests]
