@@ -50,4 +50,14 @@ f :: (a, b) -> (a -> c) -> (b -> d) -> ((c, d) -> e) -> e
 f (a, b) f1 f2 f3 = f3 (f1 a, f2 b)
 
 -- 10.
--- TODO
+-- Tuple
+-- - You know the number of values you're storing
+-- - The types of the values are different
+
+-- List
+-- - You don't know the length in advance
+-- - You have an ordered sequence of stuff with the same type
+-- - You want to operate uniformly over the data
+
+-- Functions for Tuples: fst, snd
+-- Functions for Lists: head, tails
