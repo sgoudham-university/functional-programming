@@ -33,8 +33,10 @@ input to_print = do
 getIOInt :: IO Int
 getIOInt = do
   str <- input "Please Enter A Number: "
-  -- TODO: Ask question about why this only works with the explicit return
-  return (read str)
+
+  -- Haskell doesn't actually have explicit returns, the return that I'm using here is actually a return function
+  -- The type signature for this return function is taking something and then wrapping it in a Monad
+  return (read str :: Int)
 
 check :: String -> Bool
 check operator = case operator of
