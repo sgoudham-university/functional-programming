@@ -25,6 +25,7 @@ library
   exposed-modules:
       Exercises.One.Functions
       Exercises.One.ListComprehension
+      Exercises.Three.Recursion
       Exercises.Two.Booleans
       Exercises.Two.IO
   other-modules:
@@ -42,6 +43,7 @@ test-suite functional-programming-test
   main-is: Main.hs
   other-modules:
       Exercises.One.Spec
+      Exercises.Three.Spec
       Exercises.Two.Spec
       Paths_functional_programming
   hs-source-dirs:
