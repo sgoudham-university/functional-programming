@@ -19,13 +19,19 @@ myTake 0 _ = []
 myTake num (x : xs) = x : myTake (num - 1) xs
 
 dropOdds :: [a] -> [a]
-dropOdds _ = undefined
+dropOdds [] = []
+dropOdds (x : xs) =
+  if even (length xs)
+    then x : dropOdds xs
+    else dropOdds xs
 
 myIntersperse :: [a] -> a -> [a]
-myIntersperse _ _ = undefined
+myIntersperse [] _ = []
+myIntersperse (x : xs) num = x : num : myIntersperse xs num
 
 myReverseRec :: [a] -> [a]
-myReverseRec _ = undefined
+myReverseRec [] = []
+myReverseRec (x : xs) = myReverseRec xs ++ [x]
 
 myReverseFold :: [a] -> [a]
-myReverseFold _ = undefined
+myReverseFold lst = foldl (\x y -> y : x) [] lst

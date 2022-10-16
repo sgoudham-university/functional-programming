@@ -25,6 +25,8 @@ library
   exposed-modules:
       Exercises.One.Functions
       Exercises.One.ListComprehension
+      Exercises.Three.AlgabraicDatatypes
+      Exercises.Three.HigherOrderFunctions
       Exercises.Three.Recursion
       Exercises.Two.Booleans
       Exercises.Two.IO
