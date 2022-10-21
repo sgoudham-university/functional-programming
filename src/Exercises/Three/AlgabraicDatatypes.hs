@@ -8,6 +8,7 @@ module Exercises.Three.AlgabraicDatatypes
     reverseTree,
     toTree,
     fromTree,
+    Tree (..),
     BinaryTree (..),
     ArithExpr (..),
   )
@@ -76,11 +77,12 @@ addSafeDiv (a1, a2) (b1, b2) = case (safeDiv a1 a2, safeDiv b1 b2) of
 
 -- 3.
 data Tree a = Leaf | Node a [Tree a]
+  deriving(Eq, Show)
 
 -- a.
 sumTree :: Tree Int -> Int
 sumTree Leaf = 0
-sumTree (Node a list_of_trees) = a + sum (map sumTree list_of_trees)
+sumTree (Node a children) = a + sum (map sumTree children)
 
 -- b.
 reverseTree :: Tree a -> Tree a
@@ -89,6 +91,7 @@ reverseTree (Node a list_of_trees) = Node a (map reverseTree (reverse list_of_tr
 
 -- 4.
 data BinaryTree a = BLeaf | BNode a (BinaryTree a) (BinaryTree a)
+  deriving(Eq, Show)
 
 -- a.
 toTree :: BinaryTree a -> Tree a
@@ -132,3 +135,6 @@ Another variation of case statement:
 
 -- sumTree :: Tree Int -> Int
 -- sumTree = foldl (+) 0
+
+main = do
+  print (sumTree (Node 10 [Leaf]))

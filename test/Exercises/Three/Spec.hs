@@ -41,10 +41,19 @@ safeDivHappy :: Test
 safeDivHappy = TestCase (assertEqual "safeDivHappy" (Just 5) (safeDiv 10 2))
 
 safeDivSad :: Test
-safeDivSad = TestCase (assertEqual "safeDivSad" (Nothing) (safeDiv 10 0))
+safeDivSad = TestCase (assertEqual "safeDivSad" Nothing (safeDiv 10 0))
 
 addSafeDivHappy :: Test
 addSafeDivHappy = TestCase (assertEqual "addSafeDivHappy" (Just 10) (addSafeDiv (10, 2) (10, 2)))
+
+sumTreeHappy :: Test
+sumTreeHappy = TestCase (assertEqual "sumTreeHappy" 10 (sumTree (Node 10 [Leaf])))
+
+sumTreeHappyAgain :: Test
+sumTreeHappyAgain = TestCase (assertEqual "sumTreeHappyAgain" 25 (sumTree (Node 10 [Node 5 [Leaf], Node 10 [Leaf]])))
+
+reverseTreeHappy :: Test
+reverseTreeHappy = TestCase (assertEqual "reverseTreeHappy" (Node 1 [Node 2 [Leaf], Node 3 [Leaf]] :: Tree Int) (reverseTree (Node 1 [Node 3 [Leaf], Node 2 [Leaf]])))
 
 -- TODO: MORE TESTS REQUIRED
 
@@ -64,5 +73,8 @@ threeTests =
       safeHeadSad,
       safeDivHappy,
       safeDivSad,
-      addSafeDivHappy
+      addSafeDivHappy,
+      sumTreeHappy,
+      sumTreeHappyAgain,
+      reverseTreeHappy
     ]
