@@ -23,6 +23,11 @@ source-repository head
 
 library
   exposed-modules:
+      Exercises.Five.LazyEvaluation
+      Exercises.Five.Typeclasses
+      Exercises.Four.IPAddress
+      Exercises.Four.ParserCombinators
+      Exercises.Four.QuickCheck
       Exercises.One.Functions
       Exercises.One.ListComprehension
       Exercises.Three.AlgabraicDatatypes
